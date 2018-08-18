@@ -16,6 +16,6 @@ app.use('/weakness', weakness);
 app.use('/opportunities', opportunities);
 app.use('/threats', threats);
 
-app.listen(8069, () => {
-    console.log('Started on port 8069');
+app.listen(3000, () => {
+    console.log('Started on port 3000');
 });
