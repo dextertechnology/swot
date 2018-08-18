@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 const {mongoose} = require('../db/mongoose');
 
-var {Person} = require('../models/person');
+var {Strength} = require('../models/strength');
 
 var app = express.Router();
 
@@ -15,11 +15,14 @@ app.use((req, res, next) => {
 })
 
 app.post('/', (req, res) => {
-    var person = new Person({
-        name: req.body.name
+    var strength = new Strength({
+        title: req.body.title,
+        desc: req.body.desc,
+        tags: req.body.tags,
+        createdAt: req.body.createdAt
     });
 
-    person.save().then((doc) => {
+    strength.save().then((doc) => {
         res.send(doc);
     }, (e) => {
         res.status(400).send(e);
@@ -27,8 +30,8 @@ app.post('/', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    Person.find().then((person) => {
-        res.send({person})
+    Strength.find().then((strength) => {
+        res.send({strength})
     }, (e) => {
         res.status(400).send(e);
     })
@@ -41,12 +44,12 @@ app.get('/:id', (req, res) => {
         return res.status(404).send();
     }
 
-    Person.findById(id).then((person) => {
-        if (!person) {
+    Strength.findById(id).then((strength) => {
+        if (!strength) {
             return res.status(404).send();
         }
 
-        res.send({person});
+        res.send({strength});
     }).catch((e) => {
         res.status(400).send();
     })
@@ -59,12 +62,12 @@ app.delete('/:id', (req, res) => {
         return res.status(404).send()
     }
 
-    Person.findByIdAndRemove(id).then((person) => {
-        if (!person) {
+    Strength.findByIdAndRemove(id).then((strength) => {
+        if (!strength) {
             return res.status(404).send();
         }
 
-        res.send(person);
+        res.send(strength);
     }).catch((e) => {
         res.status(400).send();
     });
@@ -72,21 +75,21 @@ app.delete('/:id', (req, res) => {
 
 app.patch('/:id', (req, res) => {
     var id = req.params.id;
-    var body = _.pick(req.body, ['name', 'address', 'position', 'company', 'age']);
+    var body = _.pick(req.body, ['title', 'desc', 'tags', 'createdAt']);
 
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();
     }
 
-    Person.findByIdAndUpdate(id, {$set: body}, {new: true}).then((Person) => {
-        if (!Person) {
+    Strength.findByIdAndUpdate(id, {$set: body}, {new: true}).then((Strength) => {
+        if (!Strength) {
             return res.status(404).send();
         }
 
-        res.send({Person});
+        res.send({Strength});
     }).catch((e) => {
         res.status(400).send()
     })
 })
 
-module.exports = {person: app};
+module.exports = {strength: app};

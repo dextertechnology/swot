@@ -3,10 +3,12 @@ var Schema = mongoose.Schema;
 
 var strengthSchema = Schema({
     title: {
-        type: String
+        type: String,
+        default: null
     },
     desc: {
-        type: String
+        type: String,
+        default: null
     },
     tags: {
         type: [String],
