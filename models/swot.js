@@ -17,7 +17,12 @@ var swotSchemma = Schema({
         }
     },
     active: {
-        type: Boolean
+        type: Boolean,
+        default: true
+    },
+    person: {
+        type: Schema.Types.ObjectId,
+        ref: 'Person'
     }
 });
 

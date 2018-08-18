@@ -15,6 +15,10 @@ var weaknessSchema = Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    swot: {
+        type: Schema.Types.ObjectId,
+        ref: 'Swot'
     }
 });
 

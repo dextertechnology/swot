@@ -16,7 +16,11 @@ app.use((req, res, next) => {
 
 app.post('/', (req, res) => {
     var swot = new Swot({
-        title: req.body.title
+        title: req.body.title,
+        dateFrom: req.body.dateFrom,
+        dateTo: req.body.dateTo,
+        active: req.body.active,
+        person: req.body.person
     });
 
     swot.save().then((doc) => {
@@ -72,7 +76,7 @@ app.delete('/:id', (req, res) => {
 
 app.patch('/:id', (req, res) => {
     var id = req.params.id;
-    var body = _.pick(req.body, ['title', 'dateFrom', 'dateTo', 'active']);
+    var body = _.pick(req.body, ['title', 'dateFrom', 'dateTo', 'active', 'person']);
 
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();

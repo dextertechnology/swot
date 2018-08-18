@@ -19,7 +19,8 @@ app.post('/', (req, res) => {
         title: req.body.title,
         desc: req.body.desc,
         tags: req.body.tags,
-        createdAt: req.body.createdAt
+        createdAt: req.body.createdAt,
+        swot: req.body.swot
     });
 
     threats.save().then((doc) => {
@@ -75,7 +76,7 @@ app.delete('/:id', (req, res) => {
 
 app.patch('/:id', (req, res) => {
     var id = req.params.id;
-    var body = _.pick(req.body, ['title', 'desc', 'tags', 'createdAt']);
+    var body = _.pick(req.body, ['title', 'desc', 'tags', 'createdAt', 'swot']);
 
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();

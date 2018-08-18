@@ -16,7 +16,11 @@ app.use((req, res, next) => {
 
 app.post('/', (req, res) => {
     var person = new Person({
-        name: req.body.name
+        name: req.body.name,
+        position: req.body.position,
+        address: req.body.address,
+        company: req.body.company,
+        age: req.body.age
     });
 
     person.save().then((doc) => {
