@@ -1,6 +1,7 @@
 const express = require('express');
 
 var app = express();
+const port = process.env.PORT || 5000;
 
 var {person} = require('./routes/person');
 var {swot} = require('./routes/swot');
@@ -16,6 +17,6 @@ app.use('/weakness', weakness);
 app.use('/opportunities', opportunities);
 app.use('/threats', threats);
 
-app.listen(3000, () => {
-    console.log('Started on port 3000');
+app.listen(port, () => {
+    console.log(`Started on port ${port}`);
 });
