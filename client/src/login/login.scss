@@ -1,0 +1,58 @@
+@import '../colors';
+
+.login {
+    margin-top: 10%;
+}
+
+.login-title {
+    font-size: 3rem;
+    display: block;
+}
+
+.login-sub-title {
+    font-size: 1.2rem;
+    letter-spacing: 0.6rem;
+}
+
+.login-form {
+    input {
+        background-color: transparent;
+        padding: 5px 10px;
+        color: $pm-color;
+        border: none;
+        border-bottom: 1px solid $sec-color;
+    }
+    input:focus {
+        border-color: $pm-color;
+        outline: none;
+    }
+}
+
+.login-form {
+    * {
+        margin: 15px 0px;
+    }
+    button {
+        background-color: transparent;
+        color: $pm-color;
+        padding: 5px 30px;
+        border: 2px solid $pm-color;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.2s;
+        transition-timing-function: ease-out;
+    }
+    button:hover, button:focus {
+        background-color: $pm-color;
+        color: $alt-color;
+        outline: none;
+    }
+    a {
+        color: $pm-color;
+        font-size: 0.8rem;
+    }
+    a:focus {
+        outline: none;
+        text-decoration: underline;
+    }
+}
